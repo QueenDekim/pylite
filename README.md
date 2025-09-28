@@ -228,11 +228,6 @@ python -m pylite examples/calculator.pyl
 4. Убедитесь, что все тесты проходят
 5. Отправьте Pull Request
 
-## 💬 Получение помощи
-
-- **Discord**: https://getpochi.com/discord
-- **Issues**: https://github.com/TabbyML/pochi/issues
-
 ## 📄 Лицензия
 
 MIT License - используйте PyLite свободно для обучения и проектов!
