@@ -23,10 +23,10 @@ pylite
 Вы увидите приглашение `pylite>` и сможете вводить команды:
 
 ```
-pylite> print("Привет!")
+pyl> print("Привет!")
 Привет!
-pylite> x = 5 + 3
-pylite> print(x)
+pyl> x = 5 + 3
+pyl> print(x)
 8
 ```
 

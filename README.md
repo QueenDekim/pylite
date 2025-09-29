@@ -55,10 +55,21 @@ python -m pylite
 Режим: базовый
 Наберите 'quit()' или 'exit()' для выхода.
 
-pylite> 2 + 3
+pyl> 2 + 3
 5
-pylite> print("Hello!")
+pyl> print("Hello!")
 Hello!
+```
+
+### Поддержка многострочных функций в интерактивном режиме
+```
+pyl> def hello(name):
+...     print("Hello,", name)
+...  
+<function hello>
+pyl> hello(str(input("Your name: ")))
+Your name: Victor
+Hello, Victor
 ```
 
 ## 📚 Поддерживаемые конструкции
