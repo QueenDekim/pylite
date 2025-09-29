@@ -7,7 +7,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="py-lite-edu",
-    version="0.1.3",
+    version="0.1.4",
     author="DekimDev",
     author_email="collins.vv.dev@gmail.com",
     description="Упрощённый Python для обучения детей программированию",
@@ -15,6 +15,7 @@ setup(
     long_description_content_type="text/markdown",
     url="https://github.com/QueenDekim/pylite",
     packages=find_packages(),
+    include_package_data=True,
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Education",
@@ -34,5 +35,4 @@ setup(
             "pylite=pylite.cli:main",
         ],
     },
-    install_requires=[],
-)
+     install_requires=["pygame", "PyQt5"],)
