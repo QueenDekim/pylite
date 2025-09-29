@@ -117,4 +117,10 @@ class ErrorHandler:
             return self.format_error(exception)
         else:
             # Неожиданная ошибка Python
-            return f"😅 Упс! Произошла неожиданная ошибка: {str(exception)}"
+            error_type = type(exception).__name__
+            error_message = str(exception)
+            first_line = source_code.split('\n')[0].strip()
+            if first_line:
+                return f"� Системная ошибка: {error_type}: {error_message}\n   в коде, начинающемся с: {first_line}"
+            else:
+                return f"💥 Системная ошибка: {error_type}: {error_message}"

@@ -5,6 +5,7 @@
 import sys
 import os
 import argparse
+import readline
 from typing import Optional, List
 from .lexer import Lexer
 from .parser import Parser
@@ -26,38 +27,51 @@ class REPL:
         print(f"Режим: {'базовый' if self.mode == 'basic' else 'расширенный'}")
         print("Наберите 'quit()' или 'exit()' для выхода.\n")
         
+        buffer = []
         while True:
             try:
-                # Получаем ввод от пользователя
-                line = input("pylite> ")
-                
-                # Проверяем команды выхода
-                if line.strip().lower() in ['quit()', 'exit()', 'quit', 'exit']:
+                prompt = "...  " if buffer else "pyl> "
+                line = input(prompt)
+
+                if not buffer and line.strip().lower() in ['quit()', 'exit()', 'quit', 'exit']:
                     print("До свидания! 👋")
                     break
-                
-                # Пропускаем пустые строки
-                if not line.strip():
+
+                buffer.append(line)
+
+                # Execute when an empty line is entered after a code block
+                if not line.strip() and len(buffer) > 1:
+                    code_to_execute = "\n".join(buffer)
+                    buffer = []
+                    result = self._execute_line(code_to_execute)
+                    if result is not None:
+                        print(result)
                     continue
                 
-                # Выполняем код
-                result = self._execute_line(line)
-                
-                # Выводим результат, если он не None
-                if result is not None:
-                    print(result)
-                    
+                # Continue collecting lines if it's the start of a block or an indented line
+                if line.strip().endswith(':') or (buffer and (line.startswith(' ') or line.startswith('\t'))):
+                    continue
+
+                # Execute single-line commands
+                if buffer:
+                    code_to_execute = "\n".join(buffer)
+                    buffer = []
+                    result = self._execute_line(code_to_execute)
+                    if result is not None:
+                        print(result)
+            
             except KeyboardInterrupt:
                 print("\nИспользуйте quit() для выхода.")
+                buffer = [] # Reset buffer on interrupt
             except EOFError:
                 print("\nДо свидания! 👋")
                 break
     
-    def _execute_line(self, line: str) -> Optional[str]:
-        """Выполняет строку кода"""
+    def _execute_line(self, code: str) -> Optional[str]:
+        """Выполняет блок кода"""
         try:
             # Лексический анализ
-            lexer = Lexer(line)
+            lexer = Lexer(code)
             tokens = lexer.tokenize()
             
             # Синтаксический анализ
@@ -72,7 +86,7 @@ class REPL:
         except PyLiteError as e:
             return self.error_handler.format_error(e)
         except Exception as e:
-            return self.error_handler.handle_exception(e, line)
+            return self.error_handler.handle_exception(e, code)
 
 
 class PyLiteRunner:
