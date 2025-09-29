@@ -190,6 +190,38 @@ class MyStmt(Statement):
 2. Добавьте парсинг в `parser.py`
 3. Добавьте выполнение в `interpreter.py`
 
+### Использование модуля `turtle`
+
+```python
+# turtle_example.pyl
+import turtle
+
+# Рисуем красный квадрат
+turtle.color("red")
+for _ in range(4):
+    turtle.forward(100)
+    turtle.right(90)
+
+# Показываем результат в окне
+turtle.done()
+```
+
+### Использование модуля `sound`
+
+```python
+# sound_example.pyl
+import sound
+import time
+
+# Воспроизводим встроенный звук (должен быть в pylite/assets/sounds)
+sound.play("click")
+time.sleep(1)
+
+# Воспроизводим внешний звук по относительному пути
+# (предполагается, что файл mygame/sounds/explosion.wav существует)
+# sound.play("mygame/sounds/explosion.wav")
+```
+
 ## Тестирование
 
 Структура тестов:

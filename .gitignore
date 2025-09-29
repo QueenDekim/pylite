@@ -138,3 +138,5 @@ $RECYCLE.BIN/
 # Add any project-specific files or directories to ignore here
 
 clean.sh
+
+temp/

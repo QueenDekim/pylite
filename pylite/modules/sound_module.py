@@ -16,49 +16,39 @@ pygame.mixer.set_num_channels(16)
 _global_volume = 1.0
 
 def pylite_play(sound_name: str):
-    """Воспроизводит звуковой файл по имени или по полному пути."""
+    """Воспроизводит звуковой файл по имени, относительному или полному пути."""
     sound_path = None
-    sound_path_manager = None
 
-    # Проверяем, является ли sound_name полным путем к файлу
+    # 1. Проверяем, является ли это полным путем
     if os.path.isabs(sound_name) and os.path.exists(sound_name):
         sound_path = sound_name
-    else:
-        # Иначе, ищем встроенный звук
+    
+    # 2. Если нет, проверяем относительный путь от текущей директории
+    if not sound_path:
+        relative_path = os.path.abspath(sound_name)
+        if os.path.exists(relative_path):
+            sound_path = relative_path
+
+    # 3. Если ничего не найдено, ищем встроенный звук
+    if not sound_path:
         if not sound_name.endswith(('.wav', '.ogg')):
             sound_name += '.wav'
         
         try:
-            # Используем importlib.resources для надежного доступа к файлам данных
-            sound_path_manager = resources.path('pylite.assets.sounds', sound_name)
+            with resources.path('pylite.assets.sounds', sound_name) as path:
+                sound_path = str(path)
         except FileNotFoundError:
             raise PyLiteRuntimeError(f"Звуковой файл не найден: {sound_name}")
 
     # Воспроизводим звук по найденному пути
     try:
-        # Если это встроенный звук, нам нужно войти в контекст
-        if sound_path_manager:
-            with sound_path_manager as path:
-                sound = pygame.mixer.Sound(path)
-                sound.set_volume(_global_volume)
-                channel = pygame.mixer.find_channel()
-                if channel:
-                    channel.play(sound)
-                else:
-                    raise PyLiteRuntimeError("Все звуковые каналы заняты.")
-        elif sound_path:
-            # Если это внешний файл
-            sound = pygame.mixer.Sound(sound_path)
-            sound.set_volume(_global_volume)
-            channel = pygame.mixer.find_channel()
-            if channel:
-                channel.play(sound)
-            else:
-                raise PyLiteRuntimeError("Все звуковые каналы заняты.")
+        sound = pygame.mixer.Sound(sound_path)
+        sound.set_volume(_global_volume)
+        channel = pygame.mixer.find_channel()
+        if channel:
+            channel.play(sound)
         else:
-            # Эта ветка не должна быть достигнута, но на всякий случай
-            raise PyLiteRuntimeError(f"Не удалось определить путь к звуковому файлу: {sound_name}")
-
+            raise PyLiteRuntimeError("Все звуковые каналы заняты.")
     except pygame.error as e:
         raise PyLiteRuntimeError(f"Ошибка воспроизведения звука: {e}")
 

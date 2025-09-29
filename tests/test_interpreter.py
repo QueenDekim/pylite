@@ -162,14 +162,14 @@ greeting = p.greet()
         with self.assertRaises(PyLiteRuntimeError) as context:
             self._execute_code("print(undefined_var)")
         
-        self.assertIn("не определена", str(context.exception))
+        self.assertIn("Я не могу найти переменную", str(context.exception))
     
     def test_error_index_out_of_range(self):
         """Тест ошибки выхода за границы списка"""
         with self.assertRaises(PyLiteRuntimeError) as context:
             self._execute_code("numbers = [1, 2, 3]; print(numbers[10])")
         
-        self.assertIn("слишком большой", str(context.exception))
+        self.assertIn("Ты пытаешься достать элемент из списка", str(context.exception))
     
     def test_logical_operations(self):
         """Тест логических операций"""
