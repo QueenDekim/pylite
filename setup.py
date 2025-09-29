@@ -34,7 +34,5 @@ setup(
             "pylite=pylite.cli:main",
         ],
     },
-    install_requires=[
-        # Используем только стандартную библиотеку Python
-    ],
+    install_requires=[],
 )
