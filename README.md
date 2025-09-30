@@ -251,7 +251,7 @@ python -m pylite examples/calculator.pyl
 
 1. **Из Marketplace**: Откройте VS Code, перейдите в Extensions (Ctrl+Shift+X), найдите "PyLite" и установите расширение от `QueenDekim`.
 
-2. **Через команду**: В палитре команд VS Code (Ctrl+Shift+P) выполните:
+2. **Через команду**: В VS Code (Ctrl+P) выполните:
    ```
    ext install QueenDekim.pylite-language-support
    ```
