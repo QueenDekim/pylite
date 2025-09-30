@@ -13,7 +13,7 @@ sound.play("click")
 time.sleep(1)
 # Воспроизводим звук по указанному пути
 # sound.play("temp/test.wav")
-time.sleep(1)
+# time.sleep(1)
 
 print("Звук 'click' должен был воспроизвестись.")
 
