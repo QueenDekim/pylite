@@ -50,13 +50,13 @@ print("Добро пожаловать в PyLite!")
 Запустите её:
 
 ```bash
-python -m pylite hello.pyl  # Или `pylite hello.pyl` если естановлен через PyPI
+python -m pylite hello.pyl  # Или `pylite hello.pyl` если установлен через PyPI
 ```
 
 ### Интерактивный режим
 
 ```bash
-python -m pylite    # Или просто `pylite` если естановлен через PyPI
+python -m pylite    # Или просто `pylite` если установлен через PyPI
 ```
 
 ```
