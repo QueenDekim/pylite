@@ -1,0 +1,113 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "PyLite",
+  "patterns": [
+    {
+      "include": "#statements"
+    }
+  ],
+  "repository": {
+    "statements": {
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#keywords"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#numbers"
+        },
+        {
+          "include": "#operators"
+        },
+        {
+          "include": "#support-functions"
+        }
+      ]
+    },
+    "comment": {
+      "match": "(#).*$",
+      "name": "comment.line.number-sign.python",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.comment.python"
+        }
+      }
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.pylite",
+          "match": "\\b(if|elif|else|for|while|def|return|class|import|from|and|or|not|True|False|None)\\b"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.pylite",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.pylite",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.pylite",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.pylite",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.pylite",
+          "match": "\\b[0-9]+\\.[0-9]+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.pylite",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.arithmetic.pylite",
+          "match": "(\\+|\\-|\\*|\\/|\\%|\\*\\*)"
+        },
+        {
+          "name": "keyword.operator.comparison.pylite",
+          "match": "(==|!=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.assignment.pylite",
+          "match": "(=)"
+        }
+      ]
+    },
+    "support-functions": {
+      "patterns": [
+        {
+          "name": "support.function.builtin.pylite",
+          "match": "\\b(print|input|len|str|int|float|range|max|min|sum)\\b"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.pylite"
+}

@@ -1,0 +1,81 @@
+{
+  "name": "pylite-language-support",
+  "publisher": "QueenDekim",
+  "author": "Queen Dekim",
+  "license": "MIT",
+  "displayName": "language support for PyLite",
+  "description": "VS Code support for PyLite - simplified Python for kids",
+  "version": "0.1.0",
+  "engines": {
+    "vscode": "^1.60.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Education"
+  ],
+  "icon": "images/icon.png",
+  "activationEvents": [
+    "onLanguage:pylite"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "pylite",
+        "aliases": [
+          "PyLite",
+          "pylite"
+        ],
+        "extensions": [
+          ".pyl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "pylite",
+        "scopeName": "source.pylite",
+        "path": "./syntaxes/pylite.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "pylite",
+        "path": "./snippets/pylite.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "PyLite Configuration",
+      "properties": {
+        "pylite.path": {
+          "type": "string",
+          "default": "pylite",
+          "description": "Path to the PyLite executable"
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "pylite.runFile",
+        "title": "PyLite: Run File"
+      },
+      {
+        "command": "pylite.runInteractive",
+        "title": "PyLite: Run Interactive"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^14.18.63",
+    "@types/vscode": "^1.60.0",
+    "typescript": "^4.9.5",
+    "vsce": "^2.15.0"
+  }
+}

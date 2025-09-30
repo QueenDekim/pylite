@@ -1,0 +1,52 @@
+# Build outputs
+out/*.map
+*.vsix
+
+# Configuration files
+tsconfig.json
+webpack.config.js
+gulpfile.js
+gruntfile.js
+
+# Source code
+src/
+**/*.ts
+**/*.tsx
+
+# Node modules
+node_modules/
+
+# Package manager
+package-lock.json
+yarn.lock
+
+# Development scripts
+build.sh
+package.sh
+
+# Development documentation
+DEVELOPING.md
+SUMMARY.md
+
+# Source images (keep only the required PNG)
+images/icon.svg
+
+# Tests
+**/test/**
+**/tests/**
+**/*.test.*
+**/*.spec.*
+
+# Git
+.git/
+**/*.gitignore
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# OS generated files
+**/*.DS_Store
+**/*.asar

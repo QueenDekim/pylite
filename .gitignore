@@ -115,6 +115,12 @@ dmypy.json
 *.swo
 *~
 
+# VS Code Extension
+vscode-extension/node_modules/
+vscode-extension/out/*.map
+vscode-extension/*.vsix
+vscode-extension/package-lock.json
+
 # macOS
 .DS_Store
 .AppleDouble
@@ -140,3 +146,5 @@ $RECYCLE.BIN/
 clean.sh
 
 temp/
+
+node_modules
