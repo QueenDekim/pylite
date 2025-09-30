@@ -1,3 +1,8 @@
+<img width="128" height="128" alt="PyLite" src="vscode-extension/images/icon.png" />
+
+[![PyPI - Version](https://img.shields.io/pypi/v/py-lite-edu)](https://pypi.org/project/py-lite-edu/) [![GitHub License](https://img.shields.io/github/license/QueenDekim/pylite)](LICENSE) ![GitHub Repo stars](https://img.shields.io/github/stars/QueenDekim/pylite?style=flat)
+
+
 # PyLite - Упрощённый Python для детей 🐍✨
 
 PyLite - это упрощённая версия языка Python, созданная специально для обучения детей программированию. Он сохраняет синтаксис Python, убирая сложные конструкции, которые могут запутать начинающих.
