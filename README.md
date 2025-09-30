@@ -133,7 +133,7 @@ for attempt in range(3):
     
     if guess == secret:
         print("🎉 Поздравляю! Ты угадал!")
-        break
+        return
     elif guess < secret:
         print("📈 Больше!")
     else:
